@@ -44,8 +44,8 @@ jobs:
 
       - name: Install Trivy
         run: |
-          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s)_$(uname -m).tar.gz \
-            && tar zxvf trivy_* && sudo mv trivy /usr/local/bin/
+            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh \
+            | sudo sh -s -- -b /usr/local/bin
 
       - name: Build image
         run: docker build -t project-web:latest ./
