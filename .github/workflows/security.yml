@@ -20,11 +20,6 @@ jobs:
       - name: Bandit scan (warn only)
         run: bandit -r project/
         continue-on-error: true
-
-      - name: Semgrep OWASP scan (warn only)
-        run: semgrep --config=p/owasp project/
-        continue-on-error: true
-
       - name: Safety dependency check
         run: safety check
 
@@ -48,8 +43,8 @@ jobs:
             | sudo sh -s -- -b /usr/local/bin
 
       - name: Build image
-        run: docker build -t project-web:latest ./
+        run: docker build -f compose/local/fastapi/Dockerfile -t fastapi_celery_example_web:latest .
 
       - name: Scan image (warn only)
-        run: trivy image project-web:latest
+        run: trivy image fastapi_celery_example_web:latest
         continue-on-error: true
