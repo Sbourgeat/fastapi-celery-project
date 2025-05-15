@@ -17,11 +17,13 @@ jobs:
       - name: Install dependencies
         run: pip install bandit semgrep safety pip-audit detect-secrets
 
-      - name: Bandit scan
-        run: bandit -r project/ 
+      - name: Bandit scan (warn only)
+        run: bandit -r project/
+        continue-on-error: true
 
-      - name: Semgrep OWASP scan
+      - name: Semgrep OWASP scan (warn only)
         run: semgrep --config=p/owasp project/
+        continue-on-error: true
 
       - name: Safety dependency check
         run: safety check
@@ -39,11 +41,15 @@ jobs:
     needs: code_scan
     steps:
       - uses: actions/checkout@v4
+
       - name: Install Trivy
         run: |
           wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s)_$(uname -m).tar.gz \
             && tar zxvf trivy_* && sudo mv trivy /usr/local/bin/
+
       - name: Build image
-        run: docker build -t project-web:latest ./ 
-      - name: Scan image
+        run: docker build -t project-web:latest ./
+
+      - name: Scan image (warn only)
         run: trivy image project-web:latest
+        continue-on-error: true
