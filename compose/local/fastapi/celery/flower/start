@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+worker_ready() {
+     celery -A main.celery inspect ping
+}
+
+until worker_ready; do
+    >&2 echo "Waiting for Celery worker to be ready..."
+    sleep 1
+done
+>&2 echo "Celery worker is ready, starting Flower..."
+
+celery flower \
+    --app=main.celery \
+    --broker="${CELERY_BROKER_URL}"

@@ -5,3 +5,10 @@ redis==5.0.1
 flower==2.0.1
 SQLAlchemy==2.0.25
 alembic==1.13.1
+psycopg2==2.9.9
+watchfiles==0.21.0
+Jinja2==3.1.2
+requests==2.31.0
+asgiref==3.7.2
+asyncio-redis==0.16.0
+broadcaster==0.2.0

@@ -1,0 +1,28 @@
+# Exclude VCS and config
+.git
+.gitignore
+
+# Exclude local env files
+.env
+.env.*
+.env/
+
+# Python cache & build
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+
+# Virtual env
+venv/
+env/
+.venv/
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log

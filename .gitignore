@@ -1,2 +1,36 @@
-__pycahce__
-venv
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual envs
+venv/
+env/
+.venv/
+
+# Env files & credentials
+.env
+.env.* 
+.env/ 
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Logs & DB
+*.log
+*.sqlite3
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
